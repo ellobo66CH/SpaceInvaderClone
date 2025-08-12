@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Space Invaders Clone</title>
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <style>
+    body {
+      background: #000;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    canvas {
+      display: block;
+      margin: 0 auto;
+    }
+
+    #hudCanvas {
+      background: #111;
+      border: 2px solid white;
+      border-bottom: none;
+    }
+
+    #gameCanvas {
+      background: black;
+      border: 2px solid white;
+      border-top: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Titel -->
+  <h1>Mein Space Invader Clone</h1>
+  <h1>\O/ -------------------------------------------- \O/</h1>
+
+  <!-- HUD Canvas für Punkte und Level -->
+  <canvas id="hudCanvas" width="600" height="50"></canvas>
+
+  <!-- Hauptspiel-Canvas -->
+  <canvas id="gameCanvas" width="600" height="400"></canvas>
+
+  <script type="module" src="game.js"></script>
+</body>
+</html>
