@@ -1,1 +1,21 @@
-<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Space Invaders Clone</title>\n    <style>\n        #gameWrap {\n            width: min(100%, 600px);\n            padding: env(safe-area-inset);\n            touch-action: none;\n        }\n        canvas {\n            width: 100%;\n            height: auto;\n        }\n        h1 {\n            font-size: 2em;\n        }\n        @media (max-width: 600px) {\n            h1 {\n                font-size: 1.5em;\n            }\n            h2 {\n                display: none;\n            }\n        }\n    <\/style>\n</head>\n<body>\n    <div id="gameWrap">\n        <h1>Space Invaders</h1>\n        <h2>Player 1</h2>\n        <canvas id="gameCanvas"></canvas>\n        <canvas id="fireBtn"></canvas>\n    </div>\n</body>\n</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Invader Clone</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="hudCanvas"></canvas>
+        <canvas id="gameCanvas"></canvas>
+        <div id="fireBtn" class="overlay">Fire</div>
+    </div>
+    <section id="controls">
+        <h2>Controls</h2>
+        <p>Use arrow keys to move and space to shoot.</p>
+    </section>
+    <script type="module" src="game.js"></script>
+</body>
+</html>
