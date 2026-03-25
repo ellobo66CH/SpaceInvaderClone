@@ -1,56 +1,77 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Space Invaders Clone</title>
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <style>
-    body {
-      background: #000;
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 0;
-      padding: 20px;
-    }
-
-    canvas {
-      display: block;
-      margin: 0 auto;
-    }
-
-    #hudCanvas {
-      background: #111;
-      border: 2px solid white;
-      border-bottom: none;
-    }
-
-    #gameCanvas {
-      background: black;
-      border: 2px solid white;
-      border-top: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Invader Clone</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: black;
+            color: white;
+        }
+        canvas {
+            border: 1px solid white;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 400px;
+            position: absolute;
+            bottom: 20px;
+        }
+        .button {
+            background-color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            flex: 1;
+            margin: 0 5px;
+        }
+        @media (max-width: 600px) {
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            .button {
+                margin: 5px 0;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Titel -->
-  <h1>Mein Space Invader Clone</h1>
-  <h1>\O/ -------------------------------------------- \O/</h1>
-
-  <!-- HUD Canvas für Punkte und Level -->
-  <canvas id="hudCanvas" width="600" height="50"></canvas>
-
-  <!-- Hauptspiel-Canvas -->
-  <canvas id="gameCanvas" width="600" height="400"></canvas>
-
-  <script type="module" src="game.js"></script>
-
-  <script type="module" src="game.js"></script>
-  <div id="controls">
-    <h2>🕹️ Controls 🕹️</h2>
-    <p><strong>left arrow or a for left   /   right arrow or d for right</strong></p>
-    <p><strong>Space to fire</strong></p>
-    <p><strong>esc for pause</strong></p>
-  </div>
+    <canvas id="gameCanvas" width="400" height="400"></canvas>
+    <div id="controlsText">Use the on-screen controls or keyboard to play.</div>
+    
+    <div class="controls">
+        <button class="button" id="leftButton">Left</button>
+        <button class="button" id="fireButton">Fire</button>
+        <button class="button" id="rightButton">Right</button>
+    </div>
+    
+    <script type="module" src="game.js"></script>
+    
+    <script>
+        // Touch control functionality
+        document.getElementById('leftButton').addEventListener('touchstart', () => {
+            // Implement left movement functionality
+        });
+        
+        document.getElementById('rightButton').addEventListener('touchstart', () => {
+            // Implement right movement functionality
+        });
+        
+        document.getElementById('fireButton').addEventListener('touchstart', () => {
+            // Implement fire functionality
+        });
+    </script>
 </body>
 </html>
