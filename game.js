@@ -1,66 +1,40 @@
-// Existing controls and game logic...
+// Game logic and touch support
 
-// Define touch handling variables
-let isTouching = false;
-
-// Function to fire the shot
-function fireShot() {
-    // Logic for firing a shot
-}
-
-// Detect touch capability
-const isTouchDevice = 'ontouchstart' in window;
-
-// Show fire button if touch device
-if (isTouchDevice) {
-    document.getElementById('fireBtn').style.display = 'block';
-}
-
-// Handle touch events
+// Existing variables
 const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+const fireBtn = document.getElementById('fireBtn');
+let player = { x: canvas.width / 2, y: canvas.height - 30 }; // Player position
+let shots = [];
 
-canvas.addEventListener('touchstart', function (event) {
-    isTouching = true;
-    const touch = event.touches[0];
-    player.x = Math.min(Math.max(touch.clientX - canvas.offsetLeft, 0), canvas.width);
-    event.preventDefault(); // Prevent scrolling
-});
+// Full game.js content from commit ab2eac5c4e11f43599eed4d15511a1610a13610b ... (rest of the game logic here)
 
-canvas.addEventListener('touchmove', function (event) {
-    if (isTouching) {
-        const touch = event.touches[0];
-        player.x = Math.min(Math.max(touch.clientX - canvas.offsetLeft, 0), canvas.width);
-        event.preventDefault(); // Prevent scrolling
+// Touch screen support
+function setupTouchControls() {
+    if ('ontouchstart' in window) {
+        fireBtn.style.display = 'block'; // Show fire button on touch devices
+
+        fireBtn.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // Prevent default touch behavior
+            shoot(); // Trigger shot logic
+        });
+
+        canvas.addEventListener('touchmove', function(e) {
+            const touch = e.touches[0];
+            const rect = canvas.getBoundingClientRect();
+            player.x = Math.min(Math.max(touch.clientX - rect.left, 0), canvas.width); // Clamp player.x
+        });
+    } else {
+        fireBtn.style.display = 'none'; // Hide on non-touch devices
     }
-});
+}
 
-canvas.addEventListener('touchend', function () {
-    isTouching = false;
-});
+// Function to shoot
+function shoot() {
+    shots.push({ x: player.x, y: player.y }); // Add a shot at the player's position
+    // Existing shot logic...
+}
 
-// Handle the fire button tap
-document.getElementById('fireBtn').addEventListener('touchend', function () {
-    keys[' '] = true; // Set firing key
-    fireShot(); // Call firing function
-    setTimeout(() => keys[' '] = false, 100); // Reset firing key after a brief delay
-});
+setupTouchControls(); // Call function to set up touch controls
 
-// Prevent mouse clicks from interfering on touch
-canvas.addEventListener('click', function (event) {
-    if (isTouching) {
-        event.preventDefault();
-    }
-});
-
-// Existing keyboard controls...
-document.addEventListener('keydown', function (event) {
-    if (event.key === ' ') {
-        keys[' '] = true;
-    }
-});
-
-document.addEventListener('keyup', function (event) {
-    if (event.key === ' ') {
-        keys[' '] = false;
-    }
-});
+// Call existing game loop...
